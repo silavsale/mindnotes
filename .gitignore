@@ -12,10 +12,14 @@ node_modules
 
 # next.js
 /.next/
+# .next
 /out/
+client/out/
+client/.next
 
 # production
 /build
+*/build
 
 # misc
 .DS_Store
@@ -31,7 +35,6 @@ yarn-error.log*
 
 # vercel
 .vercel
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -1,4 +1,4 @@
-// File: /home/sergo/Documents/code/javascript/fullstackapps/mindnotes/client/src/app/page.tsx
+// File: /home/sergo/Documents/coding/javascript/fullstackapp/mindnotes/client/src/app/page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
