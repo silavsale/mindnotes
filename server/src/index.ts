@@ -1,15 +1,16 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import express from 'express';
+import userRoutes from './routes/userRoutes';
+import noteRoutes from './routes/noteRoutes';
 
-async function main() {
-  const user = prisma.user.create({ data: { email: 'test@test.com' } });
-  console.log('user', user);
-}
+const app = express();
 
-main()
-  .catch((e) => {
-    console.error(e.message);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+app.use(express.json());
+
+app.use(userRoutes);
+app.use(noteRoutes);
+
+const server = app.listen(4000, () =>
+  console.log(`
+🚀 Server ready at: http://localhost:4000
+⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api`)
+);
