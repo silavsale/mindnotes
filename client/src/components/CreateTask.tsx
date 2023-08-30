@@ -13,7 +13,7 @@ function CreateTask() {
       updated: new Date(),
       body,
       author: 'John Doe',
-      status: 'Incomplete',
+      status: 'in-progress',
     };
 
     fetch('/api/addTask', {
@@ -48,25 +48,24 @@ function CreateTask() {
         className="bg-blue-500 shadow-md rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={onSubmitHandler}
       >
-        <div className="mb-4">
-          <label className="p-2 f-1">
-            Title:
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <label className="p-2 f-2">
-            Body:
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            />
-          </label>
+        <div className="text-blue-800 font-bold uppercase text-center">
+          Add new note
+        </div>
+        <div className="my-2">
+          <input
+            placeholder="Title"
+            className="shadow appearance-none border rounded w-full p-2 my-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            placeholder="Body"
+            className="shadow appearance-none border rounded w-full p-2 my-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+          />
         </div>
         <div className="flex items-center justify-between">
           <button

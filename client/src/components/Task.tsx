@@ -2,16 +2,24 @@ import React from 'react';
 import { TaskProps, TaskStatus } from './types'; // adjust the path as needed
 import tasks from '../../data/tasks.json';
 import Moment from 'moment';
+import { log } from 'console';
+
+import {
+  FaRegSquare,
+  FaRegSquareCheck,
+  FaRegSquareMinus,
+} from 'react-icons/fa6';
 
 const Task: React.FC<TaskProps> = () => {
   Moment.locale('en');
+  console.log('tasks', tasks);
 
   return (
     <div>
-      <div className="flex justify-center first-letter:text-gray-100 font-bold text-2xl mb-2">
+      <div className="flex justify-center first-letter:text-gray-100 font-bold text-2xl mb-2 uppercase ">
         List of Notes
       </div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 m-5">
+      <div className="grid sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 m-5">
         {tasks.tasks.map((task) => (
           <ul className="bg-sky-500 p-5 m-2 rounded-lg" key={task.id}>
             <li className="bg-sky-800 rounded-lg p-2 text-center">
@@ -25,8 +33,18 @@ const Task: React.FC<TaskProps> = () => {
             </li>
             <li>{task.name}</li>
             <li>{task.body}</li>
-            <li>{task.status}</li>
-            <li>{task.author}</li>
+            <li>
+              {task.status === 'pending' ? (
+                <FaRegSquareMinus size={50} color="red" />
+              ) : task.status === 'completed' ? (
+                <FaRegSquareCheck />
+              ) : task.status === 'in-progress' ? (
+                <FaRegSquare size={50} color="red" />
+              ) : (
+                ''
+              )}
+            </li>
+            <li className="text-xs">{task.author}</li>
           </ul>
         ))}
       </div>
