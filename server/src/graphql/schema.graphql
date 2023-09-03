@@ -1,0 +1,41 @@
+type User {
+  id: ID!
+  email: String!
+  name: String
+  notes: [Note!]!
+}
+
+type Note {
+  id: ID!
+  title: String!
+  content: String!
+  status: NoteStatus!
+  createdAt: String!
+  updatedAt: String!
+  creator: User!
+}
+
+enum NoteStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+type Query {
+  users: [User!]!
+  notes: [Note!]!
+  user(id: ID!): User
+  note(id: ID!): Note
+}
+
+type Mutation {
+  createUser(name: String, email: String!): User!
+  deleteUser(email: String!): User
+  deleteNote(id: ID!): Note
+  updateNote(id: ID!, title: String, content: String): Note!
+}
+
+input NoteInput {
+  title: String!
+  content: String!
+}

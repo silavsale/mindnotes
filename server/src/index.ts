@@ -1,16 +1,24 @@
-import express from 'express';
-import userRoutes from './routes/userRoutes';
-import noteRoutes from './routes/noteRoutes';
+import 'graphql-import-node';
 
-const app = express();
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import resolvers from './graphql/resolvers';
+import { readFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-app.use(express.json());
+const currentDir = dirname(fileURLToPath(import.meta.url));
 
-app.use(userRoutes);
-app.use(noteRoutes);
-
-const server = app.listen(4000, () =>
-  console.log(`
-🚀 Server ready at: http://localhost:4000
-⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api`)
+const typeDefs = readFileSync(
+  join(currentDir, './graphql/schema.graphql'),
+  'utf8'
 );
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
+
+console.log(`🚀 Server listening at: ${url}`);
