@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../mutations/userMutations';
 import { GET_USERS } from '../queries/userQueries';
 
-export default function AddUser() {
+export default function AddNote() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -36,19 +36,8 @@ export default function AddUser() {
 
   return (
     <div className="m-3">
-      <div className="uppercase text-amber-600 font-bold text-center text-xl">
-        Add new user
-      </div>
       <form onSubmit={onSubmit}>
         <div className="mb-3">
-          {/* <input
-            type="text"
-            id="name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="name"
-            required
-          /> */}
-
           <input
             type="text"
             className="placeholder-slate-800 bg-lime-600 border-l-rose-500 rounded-md p-2 w-full"
