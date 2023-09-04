@@ -30,3 +30,13 @@ model Note {
   creatorId String
   creator   User      @relation(fields: [creatorId], references: [id])
 }
+
+model Tool {
+  id            Int      @id @default(autoincrement())
+  name          String
+  description   String?
+  category      String?
+  brand         String?
+  purchaseDate  DateTime?
+  imageUrl      String?
+}
